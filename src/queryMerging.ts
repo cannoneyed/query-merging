@@ -45,21 +45,25 @@ import {
   getFragmentDefinitions,
   FragmentMap,
   createFragmentMap,
-} from '../queries/getFromAST';
+} from 'apollo-client';
 
 import {
   Request,
-} from './networkInterface';
-
-import {
-  resultKeyNameFromField,
-} from '../data/storeUtils';
+} from 'apollo-client';
 
 import assign = require('lodash.assign');
 import cloneDeep = require('lodash.clonedeep');
 import isArray = require('lodash.isarray');
 import isNull = require('lodash.isnull');
 import isUndefined = require('lodash.isundefined');
+
+
+// copied from apollo-client/data/storeUtils
+function resultKeyNameFromField(field: Field): string {
+  return field.alias ?
+    field.alias.value :
+    field.name.value;
+}
 
 // Merges requests together.
 // NOTE: This is pretty much the only function from this file that should be

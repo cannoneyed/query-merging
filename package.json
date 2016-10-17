@@ -4,7 +4,19 @@
   "description": "Query-merging type batching for Apollo Client's network interface",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "rm -rf ./lib && npm run compile && ./scripts/deploy.sh",
+    "pretest": "npm run compile",
+    "test": "npm run testonly --",
+    "posttest": "npm run lint",
+    "compile": "tsc",
+    "compile:browser": "rm -rf ./dist && mkdir ./dist && browserify ./lib/src/index.js -o=./dist/index.js && npm run minify:browser",
+    "minify:browser": "uglifyjs --compress --mangle --screw-ie8 -o=./dist/index.min.js -- ./dist/index.js",
+    "watch": "tsc -w",
+    "prepublish": "npm run compile",
+    "lint": "grunt tslint",
+    "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha -- --reporter dot --full-trace lib/test/tests.js",
+    "postcoverage": "remap-istanbul --input coverage/coverage.json --type lcovonly --output coverage/lcov.info",
+    "testonly": "mocha --reporter spec --full-trace lib/test/tests.js"
   },
   "repository": {
     "type": "git",
@@ -16,14 +28,32 @@
     "batching"
   ],
   "author": "Jonas Helfer <jonas@helfer.email>",
-  "contributors": ["Dhaivat Pandya <dhaivatpandya@gmail.com>"],
+  "contributors": [
+    "Dhaivat Pandya <dhaivatpandya@gmail.com>"
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/apollostack/transport-utils/issues"
   },
   "homepage": "https://github.com/apollostack/transport-utils#readme",
   "dependencies": {
-    "apollo-client": "^0.4.18",
-    "lodash.assign": "^4.2.0"
+    "apollo-client": "^0.5.0-0",
+    "graphql": "^0.7.2",
+    "lodash.assign": "^4.2.0",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.isarray": "^4.0.0",
+    "lodash.isnull": "^3.0.0",
+    "lodash.isundefined": "^3.0.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2",
+    "tslint": "3.15.1",
+    "typescript": "2.0.3"
+  },
+  "optionalDependencies": {
+    "@types/lodash": "^4.14.34",
+    "@types/node": "^6.0.38",
+    "@types/promises-a-plus": "0.0.26"
   }
 }

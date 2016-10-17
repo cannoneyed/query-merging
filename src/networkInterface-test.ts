@@ -1,4 +1,4 @@
-  /* TODO REFACTOR
+
   describe('query merging', () => {
     it('should merge together queries when we call batchQuery()', (done) => {
       const query1 = gql`
@@ -119,4 +119,3 @@
       });
     });
   });
-  */
