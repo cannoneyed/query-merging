@@ -1,2 +1,2 @@
-# transport-utils
-A rose by any other name would smell just as sweet
+# query-merging
+Apollo client query batching for servers that don't support transport batching. 

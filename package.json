@@ -1,0 +1,29 @@
+{
+  "name": "query-merging",
+  "version": "0.0.1",
+  "description": "Query-merging type batching for Apollo Client's network interface",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/apollostack/transport-utils.git"
+  },
+  "keywords": [
+    "GraphQL",
+    "Apollo",
+    "batching"
+  ],
+  "author": "Jonas Helfer <jonas@helfer.email>",
+  "contributors": ["Dhaivat Pandya <dhaivatpandya@gmail.com>"],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/apollostack/transport-utils/issues"
+  },
+  "homepage": "https://github.com/apollostack/transport-utils#readme",
+  "dependencies": {
+    "apollo-client": "^0.4.18",
+    "lodash.assign": "^4.2.0"
+  }
+}
